@@ -1,16 +1,15 @@
+![](./cover.png)
+
 # RenderJS
 
-> [!NOTE]
-> (原名：PDExtension／PDRenderKit，自 `2.0.0` 版本起更名為 RenderJS)
+[![Author](https://img.shields.io/badge/Author-邱敬幃%20Pardn%20Chiu-white)](https://github.com/pardnchiu)
+[![npm](https://img.shields.io/npm/v/@pardnchiu/renderjs)](https://www.npmjs.com/package/@pardnchiu/renderjs)
+[![jsdeliver](https://img.shields.io/jsdelivr/npm/hm/@pardnchiu/renderjs)](https://www.jsdelivr.com/package/npm/@pardnchiu/renderjs)
 
 > RenderJS 是一個專注於 JavaScript 原生物件 prototype 擴展的輕量工具，提供強大的 DOM 操作能力與資料處理方法，減少重複代碼，提升開發效率。
 
-![tag](https://img.shields.io/badge/tag-JavaScript%20Library-bb4444) 
-![size](https://img.shields.io/github/size/pardnchiu/RenderJS/dist%2FRenderJS.js)<br>
-[![npm](https://img.shields.io/npm/v/@pardnchiu/renderjs)](https://www.npmjs.com/package/@pardnchiu/renderjs)
-[![download](https://img.shields.io/npm/dm/@pardnchiu/renderjs)](https://www.npmjs.com/package/@pardnchiu/renderjs)
-[![jsdeliver](https://img.shields.io/jsdelivr/npm/hm/@pardnchiu/renderjs)](https://www.jsdelivr.com/package/npm/@pardnchiu/renderjs)<br>
-[![](https://img.shields.io/badge/read-English%20Version-ffffff)](https://github.com/pardnchiu/RenderJS/blob/main/README.en.md)
+> [!NOTE]
+> (原名：PDExtension／PDRenderKit，自 `2.0.0` 版本起更名為 RenderJS)
 
 
 ## 特點
@@ -234,6 +233,10 @@ npm i @pardnchiu/renderjs
 </a> <a href="https://linkedin.com/in/pardnchiu" target="_blank">
     <img src="https://pardn.io/image/linkedin.svg" width="48" height="48">
 </a>
+
+## 星
+
+[![Star](https://api.star-history.com/svg?repos=pardnchiu/RenderJS&type=Date)](https://www.star-history.com/#pardnchiu/RenderJS&Date)
 
 ***
 
