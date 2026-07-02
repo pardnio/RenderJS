@@ -215,12 +215,7 @@ npm i @pardnchiu/renderjs
 
 ## 授權條款
 
-本專案採用類 MIT 授權，但僅提供混淆後的程式碼：
-- 與 MIT 相同：可自由使用、修改、再散布，包含商業用途
-- 主要差異：預設僅提供混淆版程式碼，原始碼需另外購買
-- 授權內容：必須保留原始版權聲明 (與 MIT 相同)
-
-詳細條款與條件請參閱[軟體使用協議](https://github.com/pardnchiu/RenderJS/blob/main/LICENSE)。
+本專案採用 [MIT License](LICENSE) 授權。
 
 ## 開發者
 

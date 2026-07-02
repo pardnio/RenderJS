@@ -213,12 +213,7 @@ npm i @pardnchiu/renderjs
 
 ## License
 
-Similar to MIT License but provides obfuscated code only:
-- Same as MIT: Free to use, modify and redistribute, including commercial use 
-- Main difference: Provides obfuscated code by default, source code available for purchase
-- License terms: Must retain original copyright notice (same as MIT)
-
-For detailed terms and conditions, please see the [Software Usage Agreement](https://github.com/pardnchiu/RenderJS/blob/main/LICENSE).
+This project is licensed under the [MIT License](LICENSE).
 
 ## Creator
 

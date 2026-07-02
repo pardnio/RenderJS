@@ -15,3 +15,6 @@ memo.md
 
 # 保留編譯結果資料夾
 !dist/
+
+# 忽略 wrangler 本地快取
+worker/.wrangler/
