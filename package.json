@@ -1,47 +1,47 @@
 {
-    "name": "@pardnchiu/renderjs",
-    "version": "2.0.1",
-    "description": "A lightweight frontend rendering tool focusing on real-time DOM manipulation and flexible utilities for small to medium projects.",
-    "main": "dist/RenderJS.js",
-    "scripts": {
-        "minify": "npx terser src/RenderJS.js -c -m -o dist/RenderJS.js --config-file terser.config.json --name-cache terser.cache.json",
-        "minify-w": "chokidar 'src/RenderJS.js' -c 'npm run minify'"
-    },
-    "publishConfig": {
-        "access": "public"
-    },
-    "files": [
-        "dist",
-        "LICENSE",
-        "README.md"
-    ],
-    "repository": {
-        "type": "git",
-        "url": "git+https://github.com/pardnio/RenderJS.git"
-    },
-    "keywords": [
-        "javascript-library",
-        "frontend-tool",
-        "ui-tools",
-        "pure-javascript",
-        "native-api",
-        "邱敬幃",
-        "pardnchiu"
-    ],
-    "author": {
-        "name": "邱敬幃 Pardn Chiu",
-        "email": "dev@pardn.io",
-        "url": "https://github.com/pardnchiu"
-    },
-    "license": "MIT",
-    "bugs": {
-        "url": "https://github.com/pardnio/RenderJS/issues",
-        "email": "dev@pardn.io"
-    },
-    "homepage": "https://github.com/pardnio/RenderJS#readme",
-    "devDependencies": {
-        "chokidar-cli": "3.0.0",
-        "terser": "5.31.3",
-        "sass": "1.62.0"
-    }
+  "name": "@pardnchiu/renderjs",
+  "version": "2.0.2",
+  "description": "A lightweight frontend rendering tool focusing on real-time DOM manipulation and flexible utilities for small to medium projects.",
+  "main": "dist/RenderJS.js",
+  "scripts": {
+    "minify": "npx terser src/RenderJS.js -c -m -o dist/RenderJS.js --config-file terser.config.json --name-cache terser.cache.json",
+    "minify-w": "chokidar 'src/RenderJS.js' -c 'npm run minify'"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "files": [
+    "dist",
+    "LICENSE",
+    "README.md"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pardnio/RenderJS.git"
+  },
+  "keywords": [
+    "javascript-library",
+    "frontend-tool",
+    "ui-tools",
+    "pure-javascript",
+    "native-api",
+    "邱敬幃",
+    "pardnchiu"
+  ],
+  "author": {
+    "name": "邱敬幃 Pardn Chiu",
+    "email": "dev@pardn.io",
+    "url": "https://github.com/pardnchiu"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/pardnio/RenderJS/issues",
+    "email": "dev@pardn.io"
+  },
+  "homepage": "https://github.com/pardnio/RenderJS#readme",
+  "devDependencies": {
+    "chokidar-cli": "3.0.0",
+    "terser": "5.31.3",
+    "sass": "1.62.0"
+  }
 }
