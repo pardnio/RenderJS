@@ -17,7 +17,7 @@
     ],
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/pardnchiu/RenderJS.git"
+        "url": "git+https://github.com/pardnio/RenderJS.git"
     },
     "keywords": [
         "javascript-library",
@@ -35,10 +35,10 @@
     },
     "license": "MIT",
     "bugs": {
-        "url": "https://github.com/pardnchiu/RenderJS/issues",
+        "url": "https://github.com/pardnio/RenderJS/issues",
         "email": "dev@pardn.io"
     },
-    "homepage": "https://github.com/pardnchiu/RenderJS#readme",
+    "homepage": "https://github.com/pardnio/RenderJS#readme",
     "devDependencies": {
         "chokidar-cli": "3.0.0",
         "terser": "5.31.3",
