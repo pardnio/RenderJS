@@ -25,11 +25,9 @@
 ## Table of Contents
 
 - [Features](#features)
-- [Built With](#built-with)
 - [Architecture](#architecture)
 - [License](#license)
 - [Author](#author)
-- [Stars](#stars)
 
 ## Features
 
@@ -40,12 +38,6 @@
 - **Native prototype extensions** — Adds dozens of chainable methods to `String`/`Array`/`Object`/`Element`/`URL`/`window` (e.g. `_child`, `_class`, `$req`, `$shuffle`, negative-index access, query-string builders), with no runtime dependency.
 - **Built-in lazyload and SVG inlining** — `_Listener({ lazyload, svg })` enables `IntersectionObserver`-based image lazy loading and automatic SVG inlining in one line.
 - **Zero-dependency, drop-in setup** — A single minified `dist/RenderJS.js` file, installable via npm or a CDN `<script>` tag, runs directly in the browser.
-
-## Built With
-
-<a href="https://skillicons.dev">
-  <img src="https://skillicons.dev/icons?i=ts,js,html,css,npm&theme=light" />
-</a>
 
 ## Architecture
 
@@ -72,10 +64,6 @@ This project is licensed under the [MIT License](LICENSE).
 
 <a href="mailto:hi@pardn.io">hi@pardn.io</a><br>
 <a href="https://www.linkedin.com/in/pardnchiu">https://www.linkedin.com/in/pardnchiu</a>
-
-## Stars
-
-[![Star](https://api.star-history.com/svg?repos=pardnio/RenderJS&type=Date)](https://www.star-history.com/#pardnio/RenderJS&Date)
 
 ***
 

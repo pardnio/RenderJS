@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://renderjs.pardn.io/sitemap.xml

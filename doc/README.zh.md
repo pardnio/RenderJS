@@ -25,11 +25,9 @@
 ## 目錄
 
 - [功能特點](#功能特點)
-- [技術堆疊](#技術堆疊)
 - [架構](#架構)
 - [授權](#授權)
 - [Author](#author)
-- [Stars](#stars)
 
 ## 功能特點
 
@@ -40,12 +38,6 @@
 - **原生物件 prototype 擴充** — 為 `String`／`Array`／`Object`／`Element`／`URL`／`window` 新增數十個鏈式方法（如 `_child`、`_class`、`$req`、`$shuffle`、負索引存取、query string 建構器），無需額外執行期依賴。
 - **內建 Lazyload 與 SVG 內嵌** — `_Listener({ lazyload, svg })` 一行啟用基於 `IntersectionObserver` 的圖片延遲載入與 SVG 自動內嵌。
 - **零依賴、免建置導入** — 單一 minified 檔案 `dist/RenderJS.js`，支援 npm 安裝或 CDN 直接引入，瀏覽器端即可運行。
-
-## 技術堆疊
-
-<a href="https://skillicons.dev">
-  <img src="https://skillicons.dev/icons?i=ts,js,html,css,npm&theme=light" />
-</a>
 
 ## 架構
 
@@ -72,10 +64,6 @@ graph TB
 
 <a href="mailto:hi@pardn.io">hi@pardn.io</a><br>
 <a href="https://www.linkedin.com/in/pardnchiu">https://www.linkedin.com/in/pardnchiu</a>
-
-## Stars
-
-[![Star](https://api.star-history.com/svg?repos=pardnio/RenderJS&type=Date)](https://www.star-history.com/#pardnio/RenderJS&Date)
 
 ***
 
