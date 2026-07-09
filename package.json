@@ -1,6 +1,6 @@
 {
   "name": "@pardnchiu/renderjs",
-  "version": "2.0.2",
+  "version": "2.0.3",
   "description": "A lightweight frontend rendering tool focusing on real-time DOM manipulation and flexible utilities for small to medium projects.",
   "main": "dist/RenderJS.js",
   "scripts": {

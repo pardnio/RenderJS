@@ -5,7 +5,7 @@
 
 <p align="center">
 <picture>
-<img src="./doc/logo.svg" alt="RenderJS" width="120">
+<img src="./doc/cover.png" alt="RenderJS">
 </picture>
 </p>
 
@@ -15,6 +15,7 @@
 
 <p align="center">
   <a href="https://www.npmjs.com/package/@pardnchiu/renderjs"><img src="https://img.shields.io/npm/v/@pardnchiu/renderjs?include_prereleases&style=for-the-badge" alt="npm"></a>
+  <a href="https://www.jsdelivr.com/package/npm/@pardnchiu/renderjs"><img src="https://img.shields.io/jsdelivr/npm/hm/@pardnchiu/renderjs?include_prereleases&style=for-the-badge" alt="Downloads"></a>
   <a href="https://github.com/pardnio/RenderJS/releases"><img src="https://img.shields.io/github/license/pardnio/RenderJS?include_prereleases&style=for-the-badge" alt="License"></a>
 </p>
 
