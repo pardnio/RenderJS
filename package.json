@@ -1,7 +1,7 @@
 {
   "name": "@pardnchiu/renderjs",
   "version": "2.0.3",
-  "description": "A lightweight frontend rendering tool focusing on real-time DOM manipulation and flexible utilities for small to medium projects.",
+  "description": "A zero-dependency JavaScript template engine with chainable DOM syntax and native prototype extensions.",
   "main": "dist/RenderJS.js",
   "scripts": {
     "minify": "npx terser src/RenderJS.js -c -m -o dist/RenderJS.js --config-file terser.config.json --name-cache terser.cache.json",
@@ -17,16 +17,17 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/pardnio/RenderJS.git"
+    "url": "git+https://github.com/pardnchiu/renderjs.git"
   },
   "keywords": [
+    "javascript-template-engine",
+    "chainable-dom",
+    "zero-dependency",
     "javascript-library",
-    "frontend-tool",
-    "ui-tools",
     "pure-javascript",
-    "native-api",
     "邱敬幃",
-    "pardnchiu"
+    "pardnchiu",
+    "pardn-chiu"
   ],
   "author": {
     "name": "邱敬幃 Pardn Chiu",
@@ -35,10 +36,10 @@
   },
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/pardnio/RenderJS/issues",
+    "url": "https://github.com/pardnchiu/renderjs/issues",
     "email": "dev@pardn.io"
   },
-  "homepage": "https://github.com/pardnio/RenderJS#readme",
+  "homepage": "https://renderjs.pardn.io",
   "devDependencies": {
     "chokidar-cli": "3.0.0",
     "terser": "5.31.3",

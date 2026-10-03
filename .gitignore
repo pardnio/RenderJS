@@ -20,3 +20,5 @@ memo.md
 worker/.wrangler/
 .doc/version-generate/
 wiki-worker/
+
+.doc

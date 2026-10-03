@@ -1,12 +1,12 @@
-# RenderJS - Documentation
+# renderjs - Documentation
 
 > Back to [README](../README.md)
 
 ## Prerequisites
 
-- A modern browser with ES2022 support (`IntersectionObserver`, `navigator.clipboard`, `fetch`)
-- Node.js (build/development only; no Node runtime dependency at execution time)
-- No other runtime dependencies
+- A modern browser with ES2022 support (`IntersectionObserver`, `fetch`, `navigator.clipboard`)
+- No runtime dependencies
+- Node.js for development only (`terser` minifies `src/RenderJS.js`)
 
 ## Installation
 
@@ -16,184 +16,250 @@
 npm i @pardnchiu/renderjs
 ```
 
+```html
+<script src="./node_modules/@pardnchiu/renderjs/dist/RenderJS.js" copyright="Pardn Ltd"></script>
+```
+
 ### Include via CDN
 
 ```html
 <!-- Version 2.0.0 and above -->
-<script src="https://cdn.jsdelivr.net/npm/@pardnchiu/renderjs@[VERSION]/dist/RenderJS.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@pardnchiu/renderjs@[VERSION]/dist/RenderJS.js" copyright="Pardn Ltd"></script>
 
-<!-- Version 1.5.2 and below (formerly PDRenderKit) -->
+<!-- Version 1.x (formerly PDRenderKit) -->
 <script src="https://cdn.jsdelivr.net/npm/pdrenderkit@[VERSION]/dist/PDRenderKit.js"></script>
 ```
 
-## Usage
+> The `RJS` template engine requires `copyright="Pardn Ltd"`: without it the script tag removes itself and never sets the init flag (`document.$init`), so `RJS` only processes text on the root node and leaves every child directive and `{{ }}` unrendered. Prototype extensions and chainable DOM construction work either way.
 
-### Basic: Chainable DOM construction
+### Build from Source
 
-```javascript
-document.body._child(
-    "section#test"._([
-        "button"._({
-            style: {
-                width: "10rem",
-                height: "2rem",
-                backgroundColor: "steelblue",
-                color: "#fff"
-            }
-        }, [
-            "span"._("test"),
-            " button"
-        ])._click(function () {
-            alert("test");
-        }),
-        "img"._({ lazyload: "https://xxxxxx" }),
-        "input@email type"._()
-    ])
-);
-
-// Enable SVG inlining and image lazyload listeners
-_Listener({
-    svg: true,
-    lazyload: true
-});
+```shell
+git clone https://github.com/pardnchiu/renderjs.git
+cd renderjs
+npm i
+npm run minify
 ```
 
-### Basic: Element querying
+`npm run minify` uses `terser` to minify `src/RenderJS.js` into `dist/RenderJS.js`; `npm run minify-w` watches the file and re-minifies on change.
+
+## Usage
+
+### Basic: Chainable DOM Construction
+
+`"tag.class#id"._(attrs, children)` builds a real DOM element from a tag-selector string; `"input@email type"` resolves to `type="email"` with `placeholder="type"`.
+
+```html
+<!doctype html>
+<html>
+<head>
+    <script src="https://cdn.jsdelivr.net/npm/@pardnchiu/renderjs@2.0.3/dist/RenderJS.js" copyright="Pardn Ltd"></script>
+</head>
+<body>
+    <script>
+        document.body._child(
+            "section#test"._([
+                "button"._({
+                    style: {
+                        width: "10rem",
+                        height: "2rem",
+                        backgroundColor: "steelblue",
+                        color: "#fff"
+                    }
+                }, [
+                    "span"._("test"),
+                    " button"
+                ])._click(function () {
+                    alert("test");
+                }),
+                "input@email type"._()
+            ])
+        );
+    </script>
+</body>
+</html>
+```
+
+### Basic: Element Querying
 
 ```javascript
 "test".$;          // document.getElementById("test")
-"div.test".$;       // document.querySelector("div.test")
-"div.test".$all;    // [...document.querySelectorAll("div.test")]
+"div.test".$;      // document.querySelector("div.test")
+"div.test".$all;   // [...document.querySelectorAll("div.test")]
 ```
 
-### Advanced: `RJS` template engine
+### Advanced: `RJS` Template Engine
 
-`RJS` is a simplified rendering tool based on the [QuickUI](https://pardn.ltd/QuickUI) concept, designed for specific projects:
+`RJS` renders a template into the DOM in a single pass, with no virtual-DOM diffing and no data watching; writes from `:model` back into `data` do not trigger a re-render.
 
-- Renders using non-vDOM technology, reducing complexity and improving performance.
-- Removes automatic listening and updating, giving developers manual control over update timing.
-- Introduces `renew()` to support precise updates of data and events.
-
-```javascript
-const app = "#app".RJS({
-    data: {
-        // Define data
-    },
-    event: {
-        // Define event methods
-    },
-    when: {
-        before_render: function () {
-            // Runs before rendering; return false to cancel
-        },
-        rendered: function () {
-            // Runs after rendering completes
-        }
-    }
-});
-
-// Update: only include the items to update; unmentioned items retain their initial values
-app.renew({
-    data: { /* ... */ },
-    event: { /* ... */ },
-    when: { /* ... */ }
-});
+```html
+<!doctype html>
+<html>
+<head>
+    <script src="https://cdn.jsdelivr.net/npm/@pardnchiu/renderjs@2.0.3/dist/RenderJS.js" copyright="Pardn Ltd"></script>
+</head>
+<body>
+    <div id="app">
+        <h3>{{ UPPER(title) }}</h3>
+        <p :if="score >= 60">Pass: {{ score }}</p>
+        <p :else>Fail: {{ score }}</p>
+        <a :href="link" :color="color">{{ LENGTH(tags) }} tags</a>
+        <input :model="name" placeholder="Type a name">
+        <button @click="show">Show data</button>
+        <pre id="out"></pre>
+    </div>
+    <script>
+        const app = "#app".RJS({
+            data: {
+                title: "renderjs",
+                score: 75,
+                link: "https://github.com/pardnchiu/renderjs",
+                color: "steelblue",
+                tags: ["dom", "template"],
+                name: ""
+            },
+            event: {
+                show: function () {
+                    "out".$.textContent = JSON.stringify(app.data);
+                }
+            },
+            when: {
+                before_render: function () {
+                    // Return false to cancel the render
+                    return true;
+                },
+                rendered: function () {
+                    console.log("rendered");
+                }
+            }
+        });
+    </script>
+</body>
+</html>
 ```
+
+> Known issues in 2.0.3: `:for` outputs the literal text `[object DocumentFragment]` (`Element._child` only accepts `Element`, so the `DocumentFragment` becomes a text node); after `renew()` the template no longer renders (the template's child nodes are moved instead of cloned); when `:if` removes a node an unhandled `TypeError` is thrown even though the output is correct; `{{ }}` stays unrendered when the root element has no direct text node (children written back to back with no whitespace); `"p.note"._()` gets the class `.note` with the dot kept; `window.$`, `$all`, `$cookie`, and `_cookie` return early for every non-empty input.
 
 ### Advanced: Networking
 
+`$req` rejects with the response text on 4xx/5xx and parses the body automatically when `Content-Type` is JSON.
+
 ```javascript
-const result = await "/api/x".$req({
-    method: "POST",
-    json: { key: "value" },
-    header: { "X-Token": "..." }
-});
+try {
+    const result = await "/api/x".$req({
+        method: "POST",
+        json: { key: "value" },
+        header: { "X-Token": "..." }
+    });
+    console.log(result);
+} catch (err) {
+    console.error(err);
+}
 ```
+
+### Advanced: Image Lazyload and SVG Inlining
+
+```html
+<img lazyload="/image.png" width="160">
+<temp-svg src="/icon.svg"></temp-svg>
+
+<script>
+    // Without arguments, enables both lazyload and SVG inlining
+    _Listener();
+</script>
+```
+
+> Known issue in 2.0.3: `_Listener({ svg: true })` actually enables lazyload and `_Listener({ lazyload: true })` enables SVG inlining; call `_Listener()` without arguments when you need both.
 
 ## API Reference
 
-### RJS Template Directives
+### `RJS` Template Directives
 
-| Attribute | Description |
+| Directive | Description |
 | --- | --- |
-| `{{ value }}` | Inserts text into HTML tags and updates automatically with data changes; supports `CALC()`, `LENGTH()`, `UPPER()`, `LOWER()`, `DATE()` helpers |
-| `:path` | Used with the `temp` tag to load HTML fragments from external files into the current page |
-| `:html` | Replaces the element's `innerHTML` with text |
-| `:for` | Supports `item in items`, `(item, index) in items`, `(key, value) in object` formats to iterate over data collections |
-| `:if`<br>`:else-if` / `:el-if`<br>`:else` | Shows or hides elements based on a condition; supports `>`, `<`, `>=`, `<=`, `==`, `!=` comparison operators |
-| `:model` | Binds data to form elements (e.g. `input`), updating data automatically when input changes |
-| `:[attr]` | Sets element attributes, e.g. `:id`/`:class`/`:src`/`:alt`/`:href` |
-| `:[css]` | Sets element CSS, e.g. `:background-color`/`:opacity`/`:margin`/`:top`/`:position` |
-| `@[event]` | Adds an event listener that triggers the corresponding method in `event`, e.g. `@click`/`@input`/`@mousedown` |
+| `{{ key.path }}` | Substitutes the dot-path value from `data` into text at render time, keeping surrounding literal text |
+| `{{ CALC(a + n) }}` | Arithmetic with `+ - * / %` |
+| `{{ LENGTH(key) }}` | Key count for plain objects, `.length` otherwise |
+| `{{ UPPER(key) }}` / `{{ LOWER(key) }}` | Uppercase / lowercase |
+| `{{ DATE(key, format) }}` | Formats a Unix timestamp (seconds), e.g. `YYYY-MM-DD` |
+| `:path` | Fetches an external HTML fragment that replaces the element; scripts in the fragment are executed |
+| `:html` | Replaces the element's `innerHTML` with the value |
+| `:for` | `item in items`, `(item, index) in items`, `(key, value) in object` |
+| `:if`<br>`:else-if` / `:el-if`<br>`:else` | Evaluates conditions in order and keeps only the first match; supports `>`, `<`, `>=`, `<=`, `==`, `!=`, with `==`/`!=` matching `null`, `true`, `false`, and `empty` |
+| `:model` | Two-way form binding: checkbox/radio joins checked values with `,`, `select` listens on `change`, `input`/`textarea` listen on `keyup` and `change` |
+| `:[attr]` | Sets an attribute; `:class` goes through `_class()`, `:id`/`:src`/`:alt`/`:href` map to the DOM property |
+| `:[css]` | Treated as a style when the name exists on `element.style`, e.g. `:color`, `:opacity` |
+| `@[event]` | Binds the same-named method in `event`, e.g. `@click`, `@input` |
 
 ### `RJS` Lifecycle
 
 | Method | Description |
 | --- | --- |
-| `"#selector".RJS(body)` | Initializes an `RJS` instance on the matched element; `body` includes `data`/`event`/`when`/`listener` |
-| `app.renew(body)` | Re-renders from the original template, merging in the updated `data`/`event`/`when` |
+| `"#selector".RJS(body)` | Creates an instance on the matched element; `body` takes `data`/`event`/`when`/`listener`; nothing initializes when no element matches |
+| `app.renew(body)` | Re-renders from the original template, merging the given `data`/`event`/`when` (known issue in 2.0.3, see above) |
+| `app.data` / `app.event` | The instance's current data and events |
 | `when.before_render()` | Runs before rendering; returning `false` cancels the render |
-| `when.rendered()` | Runs after rendering completes (including any async `:path` loads) |
+| `when.rendered()` | Runs after rendering completes (including async `:path` loads) |
 
 ### `String` Extensions
 
 | Method / Property | Description |
 | --- | --- |
-| `"selector".RJS(body)` | Starts `RJS` rendering on the matched element |
-| `"tag.class#id"._(attrs, children)` | Builds a real DOM element from a tag-selector string (handles SVG namespace, `input`/`textarea` type parsing) |
-| `"selector".$` | Gets a single matching element (`getElementById`/`querySelector`) |
-| `"selector".$all` | Gets an array of all matching elements |
-| `"url".$req(body)` | Sends a fetch request with JSON/FormData support, request de-duplication, and automatic response parsing |
+| `"selector".RJS(body)` | Starts `RJS` on the matched element |
+| `"tag.class#id"._(attrs, children)` | Builds a real DOM element (handles SVG namespace and `input`/`textarea` type parsing) |
+| `"selector".$` / `"selector".$all` | Gets a single element / an array of all matches |
+| `"url".$req(body, once)` | Same as `URL.$req` |
 | `"url".$$200(isImg)` | Checks whether a URL resolves successfully (with image content-type detection) |
 | `"str".$json` / `"str".$$json` | Safe `JSON.parse` / valid-JSON check |
 | `"str".$html` | HTML-escapes the string |
 | `"str".copy()` | Writes the string to the clipboard |
 | `"str".$base64(mimeType)` | Decodes a base64 string into a `Blob` |
+| `"url"._query(obj)` etc. | Converts to `URL` and proxies every `URL` query-string/history method |
 
 ### `Element` / `HTMLElement` Extensions
 
 | Method / Property | Description |
 | --- | --- |
-| `el._child(value, before)` / `__child(value)` / `$child(value)` | Chainable append/replace/query of child elements by index or selector array |
-| `el._class(list)` / `class_(list)` / `$$class(list)` / `$$class_(bool, list)` | Chainable add/remove/check/toggle of classList |
-| `el.$i` | Index of the element among its siblings |
+| `el._child(value, before)` / `__child(value)` / `$child(value)` | Appends / replaces / queries child elements |
+| `el._class(list)` / `class_(list)` / `$$class(list)` / `$$class_(bool, list)` | Adds / removes / checks / toggles classes |
+| `el.$i` | Index among sibling elements |
 | `el.$attributes` | All attributes as a plain object |
-| `el._click(fn)` (and every DOM event name) | Chainable `on<event>` handler assignment |
-| `el.width(v)` / `height(v)` / `marginTop(v)` / `paddingLeft(v)` ... | Chainable numeric style setters, auto-appending `px` |
-| `el.padding(t, r, b, l)` / `el.margin(...)` | CSS shorthand-style chainable setters |
-| `el.scrollToX/Y(value, animation)`, `scrollToT/L/B/R(animation)` | Scrolls to a position/edge, with optional smooth animation |
+| `el._click(fn)` (and every DOM event name) | Chainable `on<event>` assignment |
+| `el.width(v)` / `height(v)` / `marginTop(v)` / `paddingLeft(v)` ... | Style setters that append `px` to numbers |
+| `el.padding(t, r, b, l)` / `el.margin(...)` | CSS shorthand-style setters |
+| `el.scrollToX/Y(value, animation)` / `scrollToT/L/B/R(animation)` | Scrolls to a position or edge, with optional smooth animation |
 
 ### `Array` Extensions
 
 | Method / Property | Description |
 | --- | --- |
-| `arr.$sum` | Sum of a numeric array |
+| `arr.$sum` | Sum of numeric values |
 | `arr.$shuffle` | In-place Fisher–Yates shuffle, returns `this` |
-| `arr._(value, index)` / `$(index)` / `$_(index)` | Negative-index-aware insert/get/remove |
-| `arr.$req(body)` | Treats the array as URL path segments and sends a request |
+| `arr._(value, index)` / `$(index)` / `$_(index)` | Negative-index-aware insert / get / remove |
+| `arr.$req(body)` | Joins the elements into a URL path and sends a request |
 
 ### `Object` Extensions
 
 | Method / Property | Description |
 | --- | --- |
-| `obj.forEach(cb)` | Adds array-like iteration to plain objects |
-| `obj.$keys` / `$values` / `$map` | Gets keys/values/mapped results |
-| `obj._(key, value, replace)` | Conditional property setter; won't overwrite an existing value unless `replace` |
+| `obj.forEach(cb)` | Iteration for plain objects |
+| `obj.$keys` / `$values` / `$map` | Keys / values / mapped results |
+| `obj._(key, value, replace)` | Conditional setter; does not overwrite an existing value unless `replace` is true |
 
 ### `URL` Extensions
 
-| Method / Property | Description |
+| Method | Description |
 | --- | --- |
-| `url.$req(body, once)` | Full fetch wrapper with request de-duplication, FormData/JSON support, default headers |
-| `url._history(title)` / `__history(title)` | `pushState`/`replaceState` wrappers that also update `document.title` |
-| `url._query(obj)` / `__query(obj)` / `query_(keys)` / `query__()` | Chainable add/set/remove/clear of query string, returning a new `URL` instance |
+| `url.$req(body, once)` | `fetch` wrapper; `body` takes `method`, `header`, `json`, `files` + `tag` (FormData), and `credentials`; with `once`, a URL already in flight is not sent again |
+| `url._history(title)` / `__history(title)` | `pushState` / `replaceState` that also update `document.title` |
+| `url._query(obj)` / `__query(obj)` / `query_(keys)` / `query__()` | Adds / sets / removes / clears the query string, returning a new `URL` |
 
 ### `window` Extensions
 
 | Method | Description |
 | --- | --- |
-| `_Listener({ svg, lazyload })` | Enables the global SVG-inlining and image-lazyload listeners |
-| `$cookie(key)` / `_cookie(key, body, expire)` | Reads/writes cookies with automatic JSON handling |
+| `_Listener(options)` | Enables the global SVG-inlining and image-lazyload listeners (both when called without arguments) |
+| `$cookie(key)` / `_cookie(key, body, expire)` | Reads / writes cookies with automatic JSON handling |
 
 ***
 
