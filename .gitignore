@@ -19,6 +19,5 @@ memo.md
 # 忽略 wrangler 本地快取
 worker/.wrangler/
 .doc/version-generate/
-wiki-worker/
 
 .doc

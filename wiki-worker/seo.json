@@ -1,0 +1,139 @@
+{
+  "home_title": {
+    "en": "JavaScript Template Engine & DOM Library | RenderJS",
+    "zh": "JavaScript DOM 操作與模板函式庫｜RenderJS"
+  },
+  "descriptions": {
+    "en": {
+      "api-reference-array-object": "Array and Object prototype extensions: negative-index read/insert/remove, $sum, $shuffle, $map, and existence checks.",
+      "api-reference-date-time": "Date getters for every date part, the $format token formatter, $gone relative time, and Number timestamp and $uniKey helpers.",
+      "api-reference-element": "Chainable Element and DocumentFragment methods for content, classes, styles, attributes, children, traversal, and events.",
+      "api-reference-html-element": "HTMLElement helpers for px-aware sizing, padding, margin, and the scrollTo* offset setters, plus href/target setters on link elements.",
+      "api-reference-map-form": "Chainable Map get/set/delete helpers, FormData $map/$json converters, and what the HTMLFormElement getters return.",
+      "api-reference-media": "Image copy, download, and canvas re-encoding, File-to-thumbnail extraction for images and video, and the video _config setup.",
+      "api-reference-string": "String.prototype extensions: build DOM from tag-selector strings, query elements, parse JSON, escape HTML, and call URL helpers.",
+      "api-reference-url": "URL.prototype extensions: the $req fetch wrapper and its once option, pushState history helpers, and query-string builders.",
+      "api-reference-window": "Global functions RenderJS adds to window: _Listener setup, $file reading, document.body shortcuts, and how the $, $all, and cookie helpers behave.",
+      "api-reference": "Index of the native prototype extensions RenderJS adds, grouped by the constructor each page covers.",
+      "architecture": "Module-level overview of RenderJS: RJS core, directive parser, prototype extensions, and the lazyload/SVG listener.",
+      "core-concepts-directives": "The fixed order RJS applies :path, :for, :if, :model, :[attr], and @[event] directives, and how each one transforms the DOM.",
+      "core-concepts-interpolation": "How RJS resolves {{ }} text interpolation, including dot paths and the CALC, LENGTH, UPPER, LOWER, and DATE helpers.",
+      "core-concepts": "How an RJS instance clones its template, runs before_render and rendered hooks, and re-renders only on an explicit renew() call.",
+      "getting-started-dom": "Build real DOM elements from tag-selector strings like div.card#id and query elements with the $ and $all string getters.",
+      "getting-started-rjs": "Create your first RJS template instance with data, event, and when hooks, then trigger the next render manually with renew().",
+      "getting-started": "Install RenderJS from npm (@pardnchiu/renderjs) or a jsDelivr CDN script tag, and check the browser APIs it relies on.",
+      "home": "RenderJS by 邱敬幃 Pardn Chiu: a zero-dependency vanilla JS library with a one-shot template engine, DOM manipulation methods, and native prototype extensions.",
+      "listener-system": "How _Listener({ lazyload, svg }) sets up IntersectionObserver-based image lazyload and SVG inlining.",
+      "removed-api": "Every RenderJS 1.x extension removed in v2.0.2, such as $vals, $$_class, _paddingTop, and the PD class, with the 2.x replacement for each."
+    },
+    "zh": {
+      "api-reference-array-object": "Array 與 Object 的 prototype 擴充：負索引讀取／插入／刪除、$sum、$shuffle、$map 與存在判斷。",
+      "api-reference-date-time": "Date 各日期欄位 getter、$format 格式化、$gone 相對時間，以及 Number 的時間戳與 $uniKey 工具。",
+      "api-reference-element": "Element 與 DocumentFragment 的鏈式方法：內容、class、樣式、屬性、子元素、走訪與事件。",
+      "api-reference-html-element": "HTMLElement 的 px 尺寸、padding、margin 與 scrollTo* 捲動位置設定，以及 link 元素的 href／target 設定工具。",
+      "api-reference-map-form": "Map 的鏈式 get／set／delete 工具、FormData 的 $map／$json 轉換，以及 HTMLFormElement getter 的實際回傳值。",
+      "api-reference-media": "Image 的複製、下載與 canvas 重新編碼，File 的圖片／影片縮圖擷取，以及 video 元素的 _config 設定。",
+      "api-reference-string": "String.prototype 擴充：以標籤選擇器字串建構 DOM、查詢元素、解析 JSON、HTML 跳脫與 URL 工具。",
+      "api-reference-url": "URL.prototype 擴充：$req fetch 封裝與其 once 選項、pushState 瀏覽紀錄工具與 query string 組合。",
+      "api-reference-window": "加在 window 的全域函式：_Listener 啟用、$file 讀檔、document.body 捷徑，以及 $、$all 與 cookie 工具的實際行為。",
+      "api-reference": "RenderJS 原生 prototype 擴充的總索引，依各頁涵蓋的建構子分組。",
+      "architecture": "RenderJS 的模組層級概覽：RJS 核心、指令解析器、Prototype 擴充與 lazyload/SVG listener。",
+      "core-concepts-directives": "RJS 套用 :path、:for、:if、:model、:[attr]、@[event] 指令的固定順序，以及各指令如何改寫 DOM。",
+      "core-concepts-interpolation": "RJS 如何解析 {{ }} 文字插值，包含 dot path 與 CALC、LENGTH、UPPER、LOWER、DATE 輔助函式。",
+      "core-concepts": "RJS 實例如何複製模板、執行 before_render 與 rendered 鉤子，並只在明確呼叫 renew() 時重新渲染。",
+      "getting-started-dom": "以 div.card#id 這類標籤選擇器字串建構真實 DOM，並用 $ 與 $all 字串 getter 查詢元素。",
+      "getting-started-rjs": "建立第一個 RJS 模板實例，設定 data、event、when 鉤子，再以 renew() 手動觸發下一次渲染。",
+      "getting-started": "從 npm（@pardnchiu/renderjs）或 jsDelivr CDN 安裝 RenderJS，並確認所需的瀏覽器 API。",
+      "home": "RenderJS：邱敬幃 Pardn Chiu 的零依賴 JavaScript 函式庫，提供一次性模板引擎、鏈式 DOM 操作與原生 prototype 擴充。",
+      "listener-system": "_Listener({ lazyload, svg }) 如何建立基於 IntersectionObserver 的圖片延遲載入與 SVG 內嵌。",
+      "removed-api": "RenderJS 1.x 在 v2.0.2 移除的所有擴充，如 $vals、$$_class、_paddingTop 與 PD 類別，逐項附上 2.x 的替代寫法。"
+    }
+  },
+  "keywords": {
+    "en": {
+      "api-reference-array-object": "renderjs, array prototype, object prototype, negative index",
+      "api-reference-date-time": "renderjs, date format, relative time, timestamp",
+      "api-reference-element": "renderjs, element prototype, chainable dom methods",
+      "api-reference-html-element": "renderjs, htmlelement, scroll, style helpers",
+      "api-reference-map-form": "renderjs, map prototype, formdata, form to json",
+      "api-reference-media": "renderjs, image copy, video thumbnail, canvas",
+      "api-reference-string": "renderjs, string prototype, dom builder",
+      "api-reference-url": "renderjs, fetch wrapper, url prototype, query string",
+      "api-reference-window": "renderjs, cookie helper, file reader, global functions",
+      "api-reference": "renderjs, api reference, prototype extensions",
+      "architecture": "renderjs, architecture, module overview",
+      "core-concepts-directives": "renderjs, template engine, rjs directives",
+      "core-concepts-interpolation": "renderjs, text interpolation, mustache syntax, template helpers",
+      "core-concepts": "renderjs, rjs, lifecycle, non-reactive rendering, renew",
+      "getting-started-dom": "renderjs, dom library, dom manipulation, query selector",
+      "getting-started-rjs": "renderjs, rjs, template, renew",
+      "getting-started": "renderjs, install, npm, cdn, jsdelivr",
+      "home": "template engine, javascript library, dom library, vanilla js, zero dependency, dom manipulation, renderjs",
+      "listener-system": "renderjs, lazyload, svg, intersectionobserver",
+      "removed-api": "renderjs 2.0 migration, removed api, deprecated methods, pdrenderkit"
+    },
+    "zh": {
+      "api-reference-array-object": "renderjs, array prototype, object prototype, negative index",
+      "api-reference-date-time": "renderjs, date format, relative time, timestamp",
+      "api-reference-element": "renderjs, element prototype, chainable dom methods",
+      "api-reference-html-element": "renderjs, htmlelement, scroll, style helpers",
+      "api-reference-map-form": "renderjs, map prototype, formdata, form to json",
+      "api-reference-media": "renderjs, image copy, video thumbnail, canvas",
+      "api-reference-string": "renderjs, string prototype, dom builder",
+      "api-reference-url": "renderjs, fetch wrapper, url prototype, query string",
+      "api-reference-window": "renderjs, cookie helper, file reader, global functions",
+      "api-reference": "renderjs, api reference, prototype extensions",
+      "architecture": "renderjs, architecture, module overview",
+      "core-concepts-directives": "renderjs, template engine, rjs directives",
+      "core-concepts-interpolation": "renderjs, text interpolation, mustache syntax, template helpers",
+      "core-concepts": "renderjs, rjs, lifecycle, non-reactive rendering, renew",
+      "getting-started-dom": "renderjs, dom library, dom manipulation, query selector",
+      "getting-started-rjs": "renderjs, rjs, template, renew",
+      "getting-started": "renderjs, install, npm, cdn, jsdelivr",
+      "home": "javascript, dom, 模板引擎, javascript 函式庫, 零依賴, renderjs",
+      "listener-system": "renderjs, lazyload, svg, intersectionobserver",
+      "removed-api": "renderjs 2.0 升級, 已移除 api, 棄用方法, pdrenderkit"
+    }
+  },
+  "brand_keywords": [
+    "邱敬幃",
+    "Pardn Chiu",
+    "pardnchiu"
+  ],
+  "person": {
+    "id": "https://pardn.io/#pardnchiu",
+    "name": "Pardn Chiu",
+    "alt_names": [
+      "邱敬幃",
+      "Chiu Ching-Wei",
+      "pardnchiu"
+    ],
+    "same_as": [
+      "https://pardn.io/",
+      "https://www.linkedin.com/in/pardnchiu",
+      "https://github.com/pardnchiu",
+      "https://dev.to/pardnchiu",
+      "https://x.com/pardnchiu"
+    ]
+  },
+  "organization": {
+    "id": "https://pardn.io/#organization",
+    "url": "https://pardn.io/",
+    "name": "Pardn Co., Ltd",
+    "name_zh": "帕登國際有限公司",
+    "same_as": [
+      "https://github.com/pardnio"
+    ]
+  },
+  "tagline": "Taiwan · Infrastructure Engineering",
+  "og_image": "https://renderjs.pardn.io/assets/cover.png",
+  "favicon": "/favicon.png",
+  "x_default": "",
+  "ai_usage": {
+    "train": "y",
+    "input": "y",
+    "search": "y"
+  },
+  "programming_language": "JavaScript",
+  "license_url": "https://opensource.org/licenses/MIT"
+}
