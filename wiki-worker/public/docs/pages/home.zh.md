@@ -1,6 +1,9 @@
 > [!NOTE]
 > 此 README 由 [SKILL](https://github.com/agenvoy/skill-readme-generate) 生成，英文版請參閱 [這裡](https://github.com/pardnchiu/renderjs/blob/main/README.md)。
 
+> [!WARNING]
+> **已於 2026-10-30 封存。** RenderJS 不再維護，最終版本為 `v2.0.3`；`npm i @pardnchiu/renderjs` 與 jsDelivr 版本仍可使用，但不再發布新功能、錯誤修正或安全性更新，也不再受理 issue 與 pull request。
+
 ***
 
 <p align="center">

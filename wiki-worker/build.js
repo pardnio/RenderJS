@@ -6,7 +6,7 @@ const { Parse } = require("@pardnchiu/nanomd");
 const TEMPLATE_VERSION = "7.2.1"; // wiki-generate template version; see scripts/templates/CHANGELOG.md
 
 // === Site config — filled in by wiki-generate when this template is copied into a project ===
-const SITE_NAME = "pardnchiu/RenderJS";
+const SITE_NAME = "RenderJS";
 const DOMAIN = "https://renderjs.pardn.io";
 const REPO = "pardnchiu/RenderJS"; // owner/repo
 const AUTHOR_NAME = "邱敬幃 Pardn Chiu";
